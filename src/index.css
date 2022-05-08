@@ -1,0 +1,228 @@
+/* reset style */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+html {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: #3e3c3c;
+}
+
+body {
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background: #e0e0e0;
+  color: #3e3c3c;
+}
+
+main {
+  max-width: 1024px;
+  padding: 1rem;
+  margin-inline: auto;
+}
+
+/* costume styls */
+
+/* *** header *** */
+.header {
+  padding: 1rem;
+  background: #e0e0e0;
+  box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+  position: sticky;
+  top: 0;
+  margin-bottom: 30px;
+}
+
+.header__content {
+  max-width: 998px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__content nav ul {
+  display: inline-flex;
+  gap: 1rem;
+}
+
+.header__content nav ul a {
+  padding: 0.5rem;
+}
+
+.header .active {
+  border-radius: 98px;
+  background: linear-gradient(145deg, #d5d5d5, #b3b3b3);
+  background: linear-gradient(145deg, #8e78ff, #7865d8);
+  box-shadow: 6px 6px 12px #9d9d9d, -6px -6px 12px #f1f1f1;
+  color: #e9e7f3;
+}
+
+/* *** post *** */
+
+.posts-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .posts-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.post {
+  padding: 1.5rem 1rem;
+  border-radius: 23px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow: 6px 6px 12px #b3b3b3, -6px -6px 12px #ffffff;
+  max-width: 665px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: 0.2s;
+}
+
+.post:is(:hover) {
+  box-shadow: 12px 12px 24px #b3b3b3, -12px -12px 24px #ffffff;
+}
+
+.post__info {
+  display: inline-flex;
+  gap: 0.2rem;
+  align-items: baseline;
+}
+
+.post__info a {
+  color: #5814e1;
+  font-size: 1.3rem;
+}
+
+.post__info a:hover {
+  color: #6a4dff;
+}
+
+.post__info span {
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.reaction-button {
+  margin-inline: 0.8rem;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #d5d5d5, #b3b3b3);
+  box-shadow: 6px 6px 12px #9d9d9d, -6px -6px 12px #f1f1f1;
+  cursor: pointer;
+  padding: 0.5rem 0.8rem;
+  transition: 0.2s;
+}
+
+.reaction-button:is(:hover) {
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+}
+
+/* *** users *** */
+
+.users li,
+.user-page li {
+  transition: 0.2s;
+}
+
+.users li:hover,
+.user-page li:hover {
+  padding-left: 0.5rem;
+}
+
+.users-list li a,
+.user-page li a {
+  color: #453ad9;
+  margin-block: 0.5rem;
+  display: inline-block;
+}
+
+/* *** form *** */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  max-width: 650px;
+  margin-inline: auto;
+  padding: 2.5rem 1.5rem;
+  border-radius: 23px;
+  background: linear-gradient(145deg, #cacaca, #f0f0f0);
+  box-shadow: 6px 6px 12px #b1b1b1, -6px -6px 12px #ffffff;
+}
+
+.form label {
+  margin-bottom: 1rem;
+}
+
+.form input,
+.form textarea {
+  border-radius: 98px;
+  background: #c7c7c7;
+  box-shadow: inset 6px 6px 12px #9d9d9d, inset -6px -6px 12px #f1f1f1;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  transition: 0.2s;
+  font-size: 1.3rem;
+}
+
+.form textarea {
+  border-radius: 20px;
+  min-height: 8rem;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  box-shadow: inset -6px -6px 12px #9d9d9d, inset -6px -6px 12px #f1f1f1;
+}
+
+.form select {
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  border-radius: 98px;
+  background: #c7c7c7;
+  box-shadow: inset 6px 6px 12px #9d9d9d, inset -6px -6px 12px #f1f1f1;
+  font-size: 1.3rem;
+}
+
+.form button {
+  border-radius: 98px;
+  background: linear-gradient(145deg, #d5d5d5, #b3b3b3);
+  box-shadow: 6px 6px 12px #9d9d9d, -6px -6px 12px #f1f1f1;
+  width: max-content;
+  margin-inline: auto;
+  margin-block: 0.8rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form button:hover {
+  box-shadow: -6px -6px 12px #9d9d9d, -6px -6px 12px #f1f1f1;
+}
+
+.form .delete {
+  background: #ff3131;
+  color: #fff;
+  border-radius: 198px;
+}
