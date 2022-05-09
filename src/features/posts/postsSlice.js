@@ -38,8 +38,12 @@ export const updatePost = createAsyncThunk("posts/updatePost", async (post) => {
 
 export const deletePost = createAsyncThunk("posts/deletePost", async (post) => {
   const { id } = post;
-  const response = await axios.delete(`${POSTS_URL}/${id}`);
-  return response.data;
+  try {
+    const response = await axios.delete(`${POSTS_URL}/${id}`);
+    if (response?.status === 200) return post;
+  } catch (error) {
+    return error.message;
+  }
 });
 
 //? slice
