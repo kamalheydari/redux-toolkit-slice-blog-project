@@ -48,7 +48,6 @@ const EditPostForm = () => {
         setTitle("");
         setContent("");
         setUserId("");
-        dispatch(fetchPosts());
         navigate(`/post/${post.id}`);
       } catch (error) {
         console.error("Failed to edit the post", error);
@@ -65,7 +64,6 @@ const EditPostForm = () => {
       setTitle("");
       setContent("");
       setUserId("");
-      dispatch(fetchPosts());
       navigate('/');
     } catch (error) {
       console.error("Failed to delete the post", error);
