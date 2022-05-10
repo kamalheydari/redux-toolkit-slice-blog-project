@@ -1,6 +1,10 @@
 import axios from "axios";
 import { sub } from "date-fns";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from "@reduxjs/toolkit";
 
 const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
 // const POSTS_URL = "http://localhost:8000/posts";
@@ -126,8 +130,11 @@ export const selectPostsStatus = (state) => state.posts.status;
 export const selectPostsError = (state) => state.posts.error;
 export const selectPostById = (state, postId) =>
   state.posts.posts.find((post) => post.id === postId);
-export const selectPostByUser = (state, userId) =>
-  state.posts.posts.filter((post) => post.userId === userId);
+export const selectPostByUser = createSelector(
+  [selectAllPosts, (state, userId) => userId],
+  (posts, userId) => posts.filter((post) => post.userId === userId)
+);
+
 
 //? actions
 export const { addReaction } = postsSlice.actions;
