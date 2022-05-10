@@ -90,7 +90,7 @@ main {
   border-radius: 23px;
   background: linear-gradient(145deg, #cacaca, #f0f0f0);
   box-shadow: 6px 6px 12px #b3b3b3, -6px -6px 12px #ffffff;
-  max-width: 665px;
+  width: min(665px, 100%);
   margin-inline: auto;
   display: flex;
   flex-direction: column;
