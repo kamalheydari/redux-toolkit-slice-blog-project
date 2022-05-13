@@ -1,16 +1,17 @@
 {
   "posts": [
     {
-      "userId": 1,
-      "id": 6,
-      "title": "dolorem eum magni eos aperiam quia",
-      "body": "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae"
-    },
-    {
-      "userId": 1,
       "id": 7,
-      "title": "magnam facilis autem",
-      "body": "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas"
+      "title": "magnam facilis autemwww",
+      "body": "dolore placeat quibusdam ea quo vitae\nmagni quis enim qui quis quo nemo aut saepe\nquidem repellat excepturi ut quia\nsunt ut sequi eos ea sed quas",
+      "userId": 1,
+      "reactions": {
+        "thumbsUp": 0,
+        "wow": 0,
+        "heart": 0,
+        "rocket": 0,
+        "coffee": 0
+      }
     },
     {
       "userId": 1,
@@ -597,7 +598,7 @@
     },
     {
       "id": 104,
-      "title": "11111111112345555",
+      "title": "2345555",
       "body": "11111111111111",
       "userId": 1,
       "reactions": {

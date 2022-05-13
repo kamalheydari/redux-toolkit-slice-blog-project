@@ -4,16 +4,20 @@ import {
   createAsyncThunk,
   createSelector,
   createSlice,
+  createEntityAdapter,
 } from "@reduxjs/toolkit";
 
 const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
 // const POSTS_URL = "http://localhost:8000/posts";
 
-const initialState = {
-  posts: [],
+const postsAdapter = createEntityAdapter({
+  sortComparer: (a, b) => b.date.localeCompare(a.date),
+});
+
+const initialState = postsAdapter.getInitialState({
   status: "idle",
   error: null,
-};
+});
 
 //? impure actions
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
@@ -57,8 +61,7 @@ const postsSlice = createSlice({
   reducers: {
     addReaction(state, action) {
       const { postId, reaction } = action.payload;
-      const post = state.posts.find((post) => post.id === postId);
-
+      const post = state.entities[postId];
       if (post) {
         post.reactions[reaction]++;
       }
@@ -84,7 +87,7 @@ const postsSlice = createSlice({
           };
           return post;
         });
-        state.posts = loadedPosts;
+        postsAdapter.addMany(state, loadedPosts);
       })
       .addCase(fetchPosts.rejected, (state, action) => {
         state.status = "failed";
@@ -100,17 +103,15 @@ const postsSlice = createSlice({
           rocket: 0,
           coffee: 0,
         };
-        state.posts.push(action.payload);
+        postsAdapter.addOne(state, action.payload);
       })
       .addCase(updatePost.fulfilled, (state, action) => {
         if (!action.payload?.id) {
           console.log("update could not complete");
           return;
         }
-        const { id } = action.payload;
         action.payload.date = new Date().toISOString();
-        const posts = state.posts.filter((post) => post.id !== id);
-        state.posts = [...posts, action.payload];
+        postsAdapter.upsertOne(state, action.payload);
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         if (!action.payload?.id) {
@@ -118,23 +119,23 @@ const postsSlice = createSlice({
           return;
         }
         const { id } = action.payload;
-        const posts = state.posts.filter((post) => post.id !== id);
-        state.posts = posts;
+        postsAdapter.removeOne(state, id);
       });
   },
 });
 
 //? selectors
-export const selectAllPosts = (state) => state.posts.posts;
+export const {
+  selectAll: selectAllPosts,
+  selectById: selectPostById,
+} = postsAdapter.getSelectors((state) => state.posts);
+
 export const selectPostsStatus = (state) => state.posts.status;
 export const selectPostsError = (state) => state.posts.error;
-export const selectPostById = (state, postId) =>
-  state.posts.posts.find((post) => post.id === postId);
 export const selectPostByUser = createSelector(
   [selectAllPosts, (state, userId) => userId],
   (posts, userId) => posts.filter((post) => post.userId === userId)
 );
-
 
 //? actions
 export const { addReaction } = postsSlice.actions;

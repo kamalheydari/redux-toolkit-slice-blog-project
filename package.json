@@ -1,5 +1,5 @@
 {
-  "name": "redux-toolkit-slice-blog-project",
+  "name": "redux-toolkit-thunk-entityadapter-blog-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
